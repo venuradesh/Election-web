@@ -1,0 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+
+
+body {
+  margin: 0;
+  font-family: 'Poppins', cursive;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+:root {
+  --amplify-primary-color: #2b59f1;
+  --amplify-primary-tint: #3f6060;
+  --amplify-primary-shade: #2d76ba;
+  --amplify-background-color: #e0faf4;
+}
+
+.phone-field{
+  display: none;
+}

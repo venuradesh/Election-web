@@ -1,0 +1,55 @@
+.dataviewer{
+    background-color:white;
+
+    padding: 16px; 
+    padding-top: 80px; 
+}
+
+
+.div-image, .div-map, .div-remark{
+    width: 50%;
+    float: left;
+    text-align: left;
+
+  }
+
+  .div-back{
+    margin-bottom: 16px;
+    display: flex;
+  }
+
+  .div-text{
+    margin-right: 32px;
+    border-radius: 16px;
+    padding: 16px;
+    height: 150px;
+    background-color: white;
+    box-shadow: rgb(5%) 0px 8px 24px -2px;
+    border: 2px solid black;
+  }
+  .row-1{
+    
+     height: 450px;
+     margin-bottom: 28px;
+  }
+
+
+.row-2{
+    margin-bottom: 24px;
+    height: 150px;
+}
+
+  .head-text{
+     font-weight: bold;
+      font-size: 19px;
+      margin-bottom: 24px; 
+  }
+  .remark-text{
+    color: blue;
+  }
+
+  .div-topic{
+      font-weight: bold;
+      text-align: start;
+      margin-bottom: 16px;
+  }
