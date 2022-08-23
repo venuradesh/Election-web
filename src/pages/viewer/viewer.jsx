@@ -22,6 +22,10 @@ import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
 
 const useStyles = makeStyles({
+  pageWrapper: {
+    backgroundColor: colors.backgroundColor,
+  },
+
   container: {
     width: "calc(100vw - 250px)",
     height: "calc(100vh - 160px)",
@@ -38,6 +42,10 @@ const useStyles = makeStyles({
     height: "100%",
     overflowY: "auto",
     paddingBottom: 10,
+
+    "&::-webkit-scrollbar": {
+      width: 0,
+    },
   },
 
   imageContainer: {
@@ -54,6 +62,8 @@ const useStyles = makeStyles({
 
   itemContainer: {
     width: "100%",
+    paddingLeft: 10,
+    paddingRight: 10,
   },
 
   item: {
@@ -122,7 +132,7 @@ function DataViewer() {
   }
 
   return (
-    <div className="dataviewer">
+    <Box className={`dataviewer ${classes.pageWrapper}`}>
       <Header />
       <div className="div-back">
         <IconButton onClick={() => navigate(-1)} aria-label="back">
@@ -240,7 +250,7 @@ function DataViewer() {
           </Box>
         </Box>
       </Box>
-    </div>
+    </Box>
   );
 }
 
