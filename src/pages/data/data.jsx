@@ -58,7 +58,7 @@ function DataList() {
   const dataCard = (data) => {
     return (
       <Box className={`div-card ${classes.item}`} display="flex" alignItems="center" justifyContent={"space-around"} onClick={() => loadViewer(data.file, data.file_type, data.remark, data.lat, data.long)}>
-        <div className={`cell ${classes.itemContent} ${classes.image}`}>{data.file_type == 0 ? <img src={FILE_PATH + data.file} width="50px" height="50px" /> : <img src={require("../../assets/video.png")} width="50px" height="50px" />}</div>
+        <div className={`cell ${classes.itemContent} ${classes.image}`}>{data.file_type == 0 ? <img src={FILE_PATH + data.file} width="40px" height="40px" /> : <img src={require("../../assets/video.png")} width="40px" height="40px" />}</div>
         <div className={`cell ${classes.itemContent}`}>{data.lat + "  |  " + data.long}</div>
         <div className={`cell ${classes.itemContent}`}>{data.remark}</div>
       </Box>
@@ -123,7 +123,7 @@ const useStyles = makeStyles({
     borderBottom: `1px solid ${colors.borderColor}`,
     cursor: "pointer",
     transition: "all 0.3s ease",
-    height: 70,
+    height: 60,
 
     "&:hover": {
       backgroundColor: colors.backgroundColor,
