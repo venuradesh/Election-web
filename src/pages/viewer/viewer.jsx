@@ -21,93 +21,6 @@ import { makeStyles } from "@mui/styles";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
 
-const useStyles = makeStyles({
-  pageWrapper: {
-    backgroundColor: colors.backgroundColor,
-  },
-
-  container: {
-    width: "calc(100vw - 250px)",
-    height: "calc(100vh - 160px)",
-    marginLeft: "auto",
-    marginRight: "auto",
-  },
-
-  row1: {
-    width: 500,
-    height: "100%",
-  },
-
-  row2: {
-    height: "100%",
-    overflowY: "auto",
-    paddingBottom: 10,
-
-    "&::-webkit-scrollbar": {
-      width: 0,
-    },
-  },
-
-  imageContainer: {
-    width: "100%",
-    height: "100%",
-  },
-
-  image: {
-    height: "100%",
-    width: "100%",
-    objectFit: "cover",
-    cursor: "pointer",
-  },
-
-  itemContainer: {
-    width: "100%",
-    paddingLeft: 10,
-    paddingRight: 10,
-  },
-
-  item: {
-    backgroundColor: colors.boxColor,
-    border: "none",
-    height: "max-content",
-  },
-
-  typo1: {
-    color: colors.fontHeadingColor,
-  },
-
-  typo2: {
-    color: colors.fontColor,
-  },
-
-  reactViewer: {
-    paddingTop: 100,
-  },
-
-  btnNavigate: {
-    position: "absolute",
-    top: "50%",
-    backgroundColor: colors.boxColor,
-    width: 40,
-    height: 40,
-    borderRadius: 40,
-    cursor: "pointer",
-    transition: "all 0.3s ease",
-
-    "&:hover": {
-      transform: "scale(1.05)",
-    },
-  },
-
-  next: {
-    right: 20,
-  },
-
-  prev: {
-    left: 20,
-  },
-});
-
 function DataViewer() {
   const classes = useStyles();
   const [visible, setVisible] = React.useState(false);
@@ -172,36 +85,36 @@ function DataViewer() {
             />
           </div>
         </Box>
-        <Box display="flex" flexDirection="column" rowGap={2} className={`row-2 ${classes.row2}`}>
-          <Box className="div-map">
+        <Box display="flex" flexDirection="column" rowGap={0} className={`row-2 ${classes.row2}`}>
+          <Box className={`div-map ${classes.mapContainer}`}>
             <Map center={{ lat: lat, lng: long }} />
           </Box>
           <Box className={`div-remark ${classes.itemContainer}`}>
-            <Box display="flex" flexDirection={"column"} justifyContent="center" alignItems="center" className={`div-text ${classes.item}`} sx={{ boxShadow: 2 }}>
-              <Typography variant={"h6"} mt={1} mb={1} className={`head-text ${classes.typo1}`}>
+            <Box display="flex" flexDirection={"column"} justifyContent="center" alignItems="center" className={`div-text ${classes.item}`}>
+              <Typography variant={"h6"} mt={0.5} mb={0.5} sx={{ fontSize: 18 }} className={`head-text ${classes.typo1}`}>
                 Addional Remark
               </Typography>
-              <Typography variant={"body1"} className={`remark-text ${classes.typo2}`}>
+              <Typography variant={"body1"} className={`remark-text ${classes.typo2}`} sx={{ fontSize: 14 }}>
                 {remark}
               </Typography>
             </Box>
           </Box>
           <Box className={`div-remark ${classes.itemContainer}`}>
             {file_type === 0 ? (
-              <Box display="flex" flexDirection={"column"} justifyContent="center" alignItems="center" className={`div-text ${classes.item}`} sx={{ boxShadow: 2 }}>
-                <Typography variant={"h6"} mt={1} mb={1} className={`head-text ${classes.typo1}`}>
+              <Box display="flex" flexDirection={"column"} justifyContent="center" alignItems="center" className={`div-text ${classes.item}`}>
+                <Typography variant={"h6"} mt={0.5} mb={0.5} sx={{ fontSize: 18 }} className={`head-text ${classes.typo1}`}>
                   ML Remark
                 </Typography>
-                <Typography variant={"body1"} className={`remark-text ${classes.typo2}`}>
+                <Typography variant={"body1"} className={`remark-text ${classes.typo2}`} sx={{ fontSize: 14 }}>
                   {ml != null ? Object.keys(ml["mlData"]) : "Loading..."}
                 </Typography>
-                <Typography variant={"body1"} className={`remark-text ${classes.typo2}`}>
+                <Typography variant={"body1"} className={`remark-text ${classes.typo2}`} sx={{ fontSize: 14 }}>
                   {ml != null ? ml["mlData"][Object.keys(ml["mlData"])] : null}
                 </Typography>
               </Box>
             ) : (
-              <Box display="flex" flexDirection={"column"} justifyContent="center" alignItems="center" className={`div-text ${classes.item}`} sx={{ boxShadow: 2 }}>
-                <Typography variant={"h6"} mt={1} mb={1} className={`head-text ${classes.typo1}`}>
+              <Box display="flex" flexDirection={"column"} justifyContent="center" alignItems="center" className={`div-text ${classes.item}`}>
+                <Typography variant={"h6"} mt={0.5} mb={0.5} sx={{ fontSize: 18 }} className={`head-text ${classes.typo1}`}>
                   ML Remark
                 </Typography>
                 <Typography style={{ color: "red" }}>Ml Remark not provide for video !</Typography>
@@ -209,41 +122,41 @@ function DataViewer() {
             )}
           </Box>
           <Box className={`div-remark ${classes.itemContainer}`}>
-            <Box display="flex" flexDirection={"column"} justifyContent="center" alignItems="center" className={`div-text ${classes.item}`} sx={{ boxShadow: 2 }}>
-              <Typography variant={"h6"} mt={1} mb={1} className={`head-text ${classes.typo1}`}>
+            <Box display="flex" flexDirection={"column"} justifyContent="center" alignItems="center" className={`div-text ${classes.item}`}>
+              <Typography variant={"h6"} mt={0.5} mb={0.5} sx={{ fontSize: 18 }} className={`head-text ${classes.typo1}`}>
                 Logitude & Latitude
               </Typography>
-              <Typography variant={"body1"} className={`remark-text ${classes.typo2}`}>
+              <Typography variant={"body1"} className={`remark-text ${classes.typo2}`} sx={{ fontSize: 14 }}>
                 Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nisi, perferendis.
               </Typography>
             </Box>
           </Box>
           <Box className={`div-remark ${classes.itemContainer}`}>
-            <Box display="flex" flexDirection={"column"} justifyContent="center" alignItems="center" className={`div-text ${classes.item}`} sx={{ boxShadow: 2 }}>
-              <Typography variant={"h6"} mt={1} mb={1} className={`head-text ${classes.typo1}`}>
+            <Box display="flex" flexDirection={"column"} justifyContent="center" alignItems="center" className={`div-text ${classes.item}`}>
+              <Typography variant={"h6"} mt={0.5} mb={0.5} sx={{ fontSize: 18 }} className={`head-text ${classes.typo1}`}>
                 Date & Time
               </Typography>
-              <Typography variant={"body1"} className={`remark-text ${classes.typo2}`}>
+              <Typography variant={"body1"} className={`remark-text ${classes.typo2}`} sx={{ fontSize: 14 }}>
                 Lorem ipsum dolor sit amet.
               </Typography>
             </Box>
           </Box>
           <Box className={`div-remark ${classes.itemContainer}`}>
-            <Box display="flex" flexDirection={"column"} justifyContent="center" alignItems="center" className={`div-text ${classes.item}`} sx={{ boxShadow: 2 }}>
+            <Box display="flex" flexDirection={"column"} justifyContent="center" alignItems="center" className={`div-text ${classes.item}`}>
               <Typography variant={"h6"} mt={1} mb={1} className={`head-text ${classes.typo1}`}>
                 Phone number of Sender
               </Typography>
-              <Typography variant={"body1"} className={`remark-text ${classes.typo2}`}>
+              <Typography variant={"body1"} className={`remark-text ${classes.typo2}`} sx={{ fontSize: 14 }}>
                 0771234567
               </Typography>
             </Box>
           </Box>
           <Box className={`div-remark ${classes.itemContainer}`}>
-            <Box display="flex" flexDirection={"column"} justifyContent="center" alignItems="center" className={`div-text ${classes.item}`} sx={{ boxShadow: 2 }}>
+            <Box display="flex" flexDirection={"column"} justifyContent="center" alignItems="center" className={`div-text ${classes.item}`}>
               <Typography variant={"h6"} mt={1} mb={1} className={`head-text ${classes.typo1}`}>
                 AI predictions
               </Typography>
-              <Typography variant={"body1"} className={`remark-text ${classes.typo2}`}>
+              <Typography variant={"body1"} className={`remark-text ${classes.typo2}`} sx={{ fontSize: 14 }}>
                 Lorem, ipsum dolor sit amet consectetur adipisicing elit. Optio, ullam!
               </Typography>
             </Box>
@@ -255,3 +168,109 @@ function DataViewer() {
 }
 
 export default withAuthenticator(DataViewer);
+
+const useStyles = makeStyles({
+  pageWrapper: {
+    // backgroundColor: colors.backgroundColor,
+  },
+
+  container: {
+    width: "calc(100vw - 250px)",
+    height: "calc(100vh - 160px)",
+    marginLeft: "auto",
+    marginRight: "auto",
+  },
+
+  row1: {
+    width: 500,
+    height: "100%",
+  },
+
+  row2: {
+    height: "100%",
+    overflowX: "hidden",
+    overflowY: "auto",
+    paddingBottom: 10,
+    paddingLeft: 10,
+
+    "&::-webkit-scrollbar": {
+      width: 5,
+    },
+
+    "&::-webkit-scrollbar-thumb": {
+      width: 5,
+    },
+
+    "&:hover::-webkit-scrollbar-thumb": {
+      backgroundColor: colors.borderColor,
+    },
+  },
+
+  imageContainer: {
+    width: "100%",
+    height: "100%",
+  },
+
+  image: {
+    height: "100%",
+    width: "100%",
+    objectFit: "cover",
+    cursor: "pointer",
+  },
+
+  mapContainer: {
+    paddingLeft: 10,
+    paddingRight: 10,
+    width: 720,
+    height: 320,
+  },
+
+  itemContainer: {
+    width: "100%",
+    paddingLeft: 10,
+    paddingRight: 10,
+  },
+
+  item: {
+    border: "none",
+    height: "max-content",
+    height: 80,
+    borderBottom: `1px solid ${colors.borderColor}`,
+    borderRadius: 0,
+  },
+
+  typo1: {
+    color: colors.fontHeadingColor,
+  },
+
+  typo2: {
+    color: colors.fontColor,
+  },
+
+  reactViewer: {
+    paddingTop: 100,
+  },
+
+  btnNavigate: {
+    position: "absolute",
+    top: "50%",
+    backgroundColor: colors.boxColor,
+    width: 40,
+    height: 40,
+    borderRadius: 40,
+    cursor: "pointer",
+    transition: "all 0.3s ease",
+
+    "&:hover": {
+      transform: "scale(1.05)",
+    },
+  },
+
+  next: {
+    right: 20,
+  },
+
+  prev: {
+    left: 20,
+  },
+});
