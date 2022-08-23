@@ -52,10 +52,6 @@
   margin-right: 0;
 }
 
-::-webkit-scrollbar {
-  width: 0px;
-}
-
 .react-viewer-close {
   top: 70px;
 }

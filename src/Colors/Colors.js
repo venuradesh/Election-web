@@ -3,6 +3,7 @@ const colors = {
   borderColor: "#A5A6A1",
   fontHeadingColor: "#595959",
   fontColor: "#B2B2B2",
+  backgroundColor: "#F2F2F2",
 };
 
 export default colors;
