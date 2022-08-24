@@ -53,7 +53,7 @@ export default function DataTable({ rows, state, lga, ward }) {
                   {columns.map((column) => {
                     const value = row[column.id];
                     return (
-                      <TableCell sx={{ color: "primary.main", fontWeight: "400" }} key={column.id} align={column.align}>
+                      <TableCell sx={{ color: "primary.main", fontWeight: "400", cursor: "pointer" }} key={column.id} align={column.align}>
                         {column.format && typeof value === "number" ? column.format(value) : value}
                       </TableCell>
                     );

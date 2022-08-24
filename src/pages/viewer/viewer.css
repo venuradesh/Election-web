@@ -1,5 +1,4 @@
 .dataviewer {
-  background-color: white;
   padding: 32px;
   padding-top: 70px;
   position: relative;
@@ -20,10 +19,10 @@
   border-radius: 16px;
   padding: 16px;
   height: 150px;
-  background-color: white;
   box-shadow: rgb(5%) 0px 8px 24px -2px;
   border: 2px solid black;
   margin-right: 0;
+  background-color: transparent;
 }
 .row-1 {
   margin-bottom: 28px;

@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import * as React from "react";
 import { IconButton } from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import Image from "../../assets/buildings.png";
 
 import "./data.css";
 import { API_URL, SECRET_KEY, FILE_PATH } from "../../config";
@@ -70,6 +71,8 @@ function DataList() {
 
   return (
     <Box className={`data ${classes.pageWrapper}`}>
+      <Box sx={{ zIndex: 1, position: "absolute", bottom: 0, left: 0, width: "100%", height: 300, backgroundImage: `url(${Image})`, backgroundSize: "contain", backgroundPosition: "center", opacity: 0.3 }}></Box>
+
       <Header />
 
       <Box className="div-topic" display="flex" alignItems="center" justifyContent={"flex-start"} columnGap={5}>
@@ -91,15 +94,19 @@ function DataList() {
 export default withAuthenticator(DataList);
 
 const useStyles = makeStyles({
-  pageWrapper: {},
+  pageWrapper: {
+    zIndex: 1,
+  },
 
   itemsContainer: {
-    width: "80%",
+    width: "81%",
     marginLeft: "auto",
     marginRight: "auto",
     height: "calc(100vh - 220px)",
     overflowY: "auto",
     paddingRight: 10,
+    zIndex: 10,
+    position: "relative",
 
     "&::-webkit-scrollbar": {
       width: 5,
@@ -114,6 +121,7 @@ const useStyles = makeStyles({
     width: "80%",
     marginLeft: "auto",
     marginRight: "auto",
+    zIndex: 10,
   },
 
   topics: {},
@@ -127,6 +135,7 @@ const useStyles = makeStyles({
 
     "&:hover": {
       backgroundColor: colors.backgroundColor,
+      opacity: 0.8,
     },
   },
 
