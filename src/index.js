@@ -1,17 +1,41 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
-import Amplify from 'aws-amplify';
-import awsconfig from './aws-exports';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+import Amplify from "aws-amplify";
+import awsconfig from "./aws-exports";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import colors from "./Colors/Colors";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: "#00163C",
+    },
+    secondary: {
+      main: "#F8F9F3",
+    },
+  },
+  typography: {
+    h6: {
+      color: "#00163C",
+    },
+    body: {
+      color: colors.fontColor,
+    },
+    h5: {
+      color: colors.fontHeadingColor,
+    },
+  },
+});
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
 Amplify.configure(awsconfig);
 root.render(
-  <React.StrictMode>
+  <ThemeProvider theme={theme}>
     <App />
-  </React.StrictMode>
+  </ThemeProvider>
 );
 
 // If you want to start measuring performance in your app, pass a function
