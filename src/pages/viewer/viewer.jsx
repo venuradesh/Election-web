@@ -11,6 +11,7 @@ import { useNavigate } from "react-router-dom";
 import "./viewer.css";
 import { API_URL, FILE_PATH } from "../../config";
 import colors from "../../Colors/Colors";
+import Image from "../../assets/family.png";
 
 //material ui
 import { IconButton } from "@mui/material";
@@ -26,8 +27,6 @@ function DataViewer() {
   const [visible, setVisible] = React.useState(false);
   const navigate = useNavigate();
   const [ml, setML] = React.useState(null);
-  const [imgClicked, setImgClicked] = React.useState(false);
-  const [imgSrc, setImgSrc] = React.useState("");
 
   const location = useLocation();
   const { sta, lga, ward, pu, file, file_type, lat, long, remark } = location.state;
@@ -46,6 +45,8 @@ function DataViewer() {
 
   return (
     <Box className={`dataviewer ${classes.pageWrapper}`}>
+      <Box className={classes.background}></Box>
+      <Box className={classes.familyImage}></Box>
       <Header />
       <div className="div-back">
         <IconButton onClick={() => navigate(-1)} aria-label="back">
@@ -61,6 +62,7 @@ function DataViewer() {
       <Box display="flex" flexDirection="row" justifyContent={"space-around"} columnGap={2} className={classes.container}>
         <Box className={`row-1 ${classes.row1}`}>
           <div className={`div-image ${classes.imageContainer}`}>
+            <Box className={classes.imageTint}></Box>
             {file_type === 0 ? (
               !visible ? (
                 <img
@@ -91,10 +93,10 @@ function DataViewer() {
           </Box>
           <Box className={`div-remark ${classes.itemContainer}`}>
             <Box display="flex" flexDirection={"column"} justifyContent="center" alignItems="center" className={`div-text ${classes.item}`}>
-              <Typography variant={"h6"} mt={0.5} mb={0.5} sx={{ fontSize: 18 }} className={`head-text ${classes.typo1}`}>
+              <Typography variant={"h6"} mt={0.3} mb={0.3} sx={{ fontSize: 16 }} className={`head-text ${classes.typo1}`}>
                 Addional Remark
               </Typography>
-              <Typography variant={"body1"} className={`remark-text ${classes.typo2}`} sx={{ fontSize: 14 }}>
+              <Typography variant={"body1"} className={`remark-text ${classes.typo2}`} sx={{ fontSize: 12 }}>
                 {remark}
               </Typography>
             </Box>
@@ -102,41 +104,41 @@ function DataViewer() {
           <Box className={`div-remark ${classes.itemContainer}`}>
             {file_type === 0 ? (
               <Box display="flex" flexDirection={"column"} justifyContent="center" alignItems="center" className={`div-text ${classes.item}`}>
-                <Typography variant={"h6"} mt={0.5} mb={0.5} sx={{ fontSize: 18 }} className={`head-text ${classes.typo1}`}>
+                <Typography variant={"h6"} mt={0.3} mb={0.3} sx={{ fontSize: 16 }} className={`head-text ${classes.typo1}`}>
                   ML Remark
                 </Typography>
-                <Typography variant={"body1"} className={`remark-text ${classes.typo2}`} sx={{ fontSize: 14 }}>
+                <Typography variant={"body1"} className={`remark-text ${classes.typo2}`} sx={{ fontSize: 12 }}>
                   {ml != null ? Object.keys(ml["mlData"]) : "Loading..."}
                 </Typography>
-                <Typography variant={"body1"} className={`remark-text ${classes.typo2}`} sx={{ fontSize: 14 }}>
+                <Typography variant={"body1"} className={`remark-text ${classes.typo2}`} sx={{ fontSize: 12 }}>
                   {ml != null ? ml["mlData"][Object.keys(ml["mlData"])] : null}
                 </Typography>
               </Box>
             ) : (
               <Box display="flex" flexDirection={"column"} justifyContent="center" alignItems="center" className={`div-text ${classes.item}`}>
-                <Typography variant={"h6"} mt={0.5} mb={0.5} sx={{ fontSize: 18 }} className={`head-text ${classes.typo1}`}>
+                <Typography variant={"h6"} mt={0.3} mb={0.3} sx={{ fontSize: 16 }} className={`head-text ${classes.typo1}`}>
                   ML Remark
                 </Typography>
-                <Typography style={{ color: "red" }}>Ml Remark not provide for video !</Typography>
+                <Typography sx={{ fontSize: 12, color: "red" }}>Ml Remark not provide for video !</Typography>
               </Box>
             )}
           </Box>
           <Box className={`div-remark ${classes.itemContainer}`}>
             <Box display="flex" flexDirection={"column"} justifyContent="center" alignItems="center" className={`div-text ${classes.item}`}>
-              <Typography variant={"h6"} mt={0.5} mb={0.5} sx={{ fontSize: 18 }} className={`head-text ${classes.typo1}`}>
+              <Typography variant={"h6"} mt={0.3} mb={0.3} sx={{ fontSize: 16 }} className={`head-text ${classes.typo1}`}>
                 Logitude & Latitude
               </Typography>
-              <Typography variant={"body1"} className={`remark-text ${classes.typo2}`} sx={{ fontSize: 14 }}>
+              <Typography variant={"body1"} className={`remark-text ${classes.typo2}`} sx={{ fontSize: 12 }}>
                 Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nisi, perferendis.
               </Typography>
             </Box>
           </Box>
           <Box className={`div-remark ${classes.itemContainer}`}>
             <Box display="flex" flexDirection={"column"} justifyContent="center" alignItems="center" className={`div-text ${classes.item}`}>
-              <Typography variant={"h6"} mt={0.5} mb={0.5} sx={{ fontSize: 18 }} className={`head-text ${classes.typo1}`}>
+              <Typography variant={"h6"} mt={0.3} mb={0.3} sx={{ fontSize: 16 }} className={`head-text ${classes.typo1}`}>
                 Date & Time
               </Typography>
-              <Typography variant={"body1"} className={`remark-text ${classes.typo2}`} sx={{ fontSize: 14 }}>
+              <Typography variant={"body1"} className={`remark-text ${classes.typo2}`} sx={{ fontSize: 12 }}>
                 Lorem ipsum dolor sit amet.
               </Typography>
             </Box>
@@ -146,7 +148,7 @@ function DataViewer() {
               <Typography variant={"h6"} mt={1} mb={1} className={`head-text ${classes.typo1}`}>
                 Phone number of Sender
               </Typography>
-              <Typography variant={"body1"} className={`remark-text ${classes.typo2}`} sx={{ fontSize: 14 }}>
+              <Typography variant={"body1"} className={`remark-text ${classes.typo2}`} sx={{ fontSize: 12 }}>
                 0771234567
               </Typography>
             </Box>
@@ -156,7 +158,7 @@ function DataViewer() {
               <Typography variant={"h6"} mt={1} mb={1} className={`head-text ${classes.typo1}`}>
                 AI predictions
               </Typography>
-              <Typography variant={"body1"} className={`remark-text ${classes.typo2}`} sx={{ fontSize: 14 }}>
+              <Typography variant={"body1"} className={`remark-text ${classes.typo2}`} sx={{ fontSize: 12 }}>
                 Lorem, ipsum dolor sit amet consectetur adipisicing elit. Optio, ullam!
               </Typography>
             </Box>
@@ -174,11 +176,37 @@ const useStyles = makeStyles({
     // backgroundColor: colors.backgroundColor,
   },
 
+  background: {
+    width: 500,
+    height: 500,
+    backgroundColor: colors.themeColor,
+    position: "absolute",
+    bottom: -250,
+    right: -250,
+    transform: "rotateZ(45deg)",
+    zIndex: 1,
+  },
+
+  familyImage: {
+    width: 500,
+    height: 500,
+    backgroundImage: `url(${Image})`,
+    backgroundSize: "contain",
+    backgroundPosition: "center",
+    backgroundRepeat: "no-repeat",
+    position: "absolute",
+    bottom: -90,
+    right: -120,
+    zIndex: 2,
+  },
+
   container: {
     width: "calc(100vw - 250px)",
     height: "calc(100vh - 160px)",
     marginLeft: "auto",
     marginRight: "auto",
+    zIndex: 10,
+    position: "relative",
   },
 
   row1: {
@@ -209,6 +237,7 @@ const useStyles = makeStyles({
   imageContainer: {
     width: "100%",
     height: "100%",
+    position: "relative",
   },
 
   image: {
@@ -216,6 +245,14 @@ const useStyles = makeStyles({
     width: "100%",
     objectFit: "cover",
     cursor: "pointer",
+  },
+
+  imageTint: {
+    width: "100%",
+    height: "100%",
+    position: "absolute",
+    backgroundColor: colors.themeColor,
+    opacity: 0.3,
   },
 
   mapContainer: {
@@ -235,7 +272,7 @@ const useStyles = makeStyles({
     border: "none",
     height: "max-content",
     height: 80,
-    borderBottom: `1px solid ${colors.borderColor}`,
+    borderBottom: `1px solid ${colors.backgroundColor}`,
     borderRadius: 0,
   },
 
