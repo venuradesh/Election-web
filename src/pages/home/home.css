@@ -1,57 +1,56 @@
-@import url('https://fonts.googleapis.com/css2?family=Work+Sans&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Work+Sans&display=swap");
 
-.home{
-    padding: 16px;
-    padding-top: 180px;
-    padding-left: 32px;
+.home {
+  width: 100vw;
+  height: 100vh;
+  max-height: 100vh;
+  overflow: hidden;
+  padding: 16px;
+  padding-top: 180px;
+  padding-left: 32px;
 }
 
 .cellContainer {
-    width: 50%;
-    float: left;
-    align-items: center;
-
-  }
-
-  .name{
-      font-size: 3.5rem;
-      font-family: 'Work Sans', sans-serif;
-      color: rgba(0,0,0,.85);
-      text-align: left;
-      font-weight: bold;
-      letter-spacing: 4px;
-  }
-
-  .sologon{
-    font-size: 22px;
-    font-family: 'Work Sans', sans-serif;
-    color: rgba(0,0,0,.85);
-    text-align: left;
-    padding-left: 4px;
+  width: 50%;
+  float: left;
+  align-items: center;
 }
 
-.login{
-
-    
-
-    text-align: left;
-    margin-top: 48px;
+.name {
+  font-size: 3.5rem;
+  font-family: "Work Sans", sans-serif;
+  color: rgba(0, 0, 0, 0.85);
+  text-align: left;
+  font-weight: bold;
+  letter-spacing: 4px;
 }
 
-.btn {font-family: 'Work Sans', sans-serif;
-    font-size: 20px;
-    background-color: #2a73d3;
-    color: white;
-border: none;
+.sologon {
+  font-size: 22px;
+  font-family: "Work Sans", sans-serif;
+  color: rgba(0, 0, 0, 0.85);
+  text-align: left;
+  padding-left: 4px;
+}
+
+.login {
+  text-align: left;
+  margin-top: 48px;
+}
+
+.btn {
+  font-family: "Work Sans", sans-serif;
+  font-size: 20px;
+  background-color: #2a73d3;
+  color: white;
+  border: none;
   cursor: pointer;
   padding: 8px;
   border-radius: 25px;
   width: 120px;
-
-  }
-
-  .btn:hover {
-    background-color:#4ba0f0;
-    transition: 0.8s;
 }
 
+.btn:hover {
+  background-color: #4ba0f0;
+  transition: 0.8s;
+}
