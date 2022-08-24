@@ -1,47 +1,41 @@
-.dashboard{
-   background-color:white;
-   height:90vh;
-   padding: 16px; 
-   padding-top: 80px; 
+.dashboard {
+  height: 90vh;
+  padding: 16px;
+  padding-top: 80px;
 }
 
-.container-dashboard-search-area{
-    display: flex;
-   width: 100%;
-   margin-top: 8px;
+.container-dashboard-search-area {
+  display: flex;
+  width: 100%;
+  margin-top: 8px;
 
-   background-color: white;
+  background-color: white;
 }
 
-.combo-label{
-    text-align: left;
-    font-weight: bold;
-    padding-left: 2px;
+.combo-label {
+  text-align: left;
+  font-weight: bold;
+  padding-left: 2px;
 }
 
-.combo{
-    
-    padding-right: 16px;
+.combo {
+  padding-right: 16px;
 }
 
-.combo-box{
-    height: 35px;
-    
+.combo-box {
+  height: 35px;
 }
 
-.combo-box:hover{
-    box-shadow: 0 0 5pt 0.5pt #D3D3D3;
-  }
-  .combo-box:focus {
-    box-shadow: 0 0 5pt 2pt #D3D3D3;
-    outline-width: 0px;
-  }
+.combo-box:hover {
+  box-shadow: 0 0 5pt 0.5pt #d3d3d3;
+}
+.combo-box:focus {
+  box-shadow: 0 0 5pt 2pt #d3d3d3;
+  outline-width: 0px;
+}
 
-.container-table{
-    
-    background-color: white;
-    border-radius: 16px;
-    margin-top: 24px;
-    margin-bottom: 16px;
-
+.container-table {
+  border-radius: 16px;
+  margin-top: 32px;
+  margin-bottom: 4px;
 }

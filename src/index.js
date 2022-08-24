@@ -27,6 +27,9 @@ const theme = createTheme({
     h5: {
       color: colors.fontHeadingColor,
     },
+    h4: {
+      color: "#00163C",
+    },
   },
 });
 
