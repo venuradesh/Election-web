@@ -9,7 +9,6 @@ import "./dashboard.css";
 import DataTable from "../../compononts/tabele";
 import Header from "../../compononts/header";
 import { withAuthenticator } from "@aws-amplify/ui-react";
-//import '@aws-amplify/ui-react/node_modules'
 import "@aws-amplify/ui-react/styles.css";
 
 //background image
@@ -18,7 +17,6 @@ import Image from "../../assets/buildings.png";
 //material ui
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
-
 const { API_URL, SECRET_KEY } = require("../../config");
 
 class Dashboard extends React.Component {
@@ -41,18 +39,6 @@ class Dashboard extends React.Component {
   }
 
   render() {
-    /* const options = {
-      selectableRows: true,
-      selectableRowsOnClick: true,
-      onRowClick: (rowData, rowMeta) => {
-        console.log(rowData, rowMeta);
-      }
-    };
-
-    const handleRowClick = (rowData, rowMeta) => {
-      console.log(rowData, rowMeta);
-    } */
-
     return (
       <div>
         {" "}

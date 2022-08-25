@@ -1,33 +1,24 @@
-
 import { Auth } from "aws-amplify";
-import Dashboard from "./dashboard/dashboard"
+import Dashboard from "./dashboard/dashboard";
 import Home from "./home/home";
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 
 function Main() {
-    const [isLog, setState] = useState(0);
+  const [isLog, setState] = useState(false);
 
-    useEffect(() => {
-        async function isLogUser() {
-            try {
-                await Auth.currentAuthenticatedUser();
-                setState(true)
-            } catch {
+  useEffect(() => {
+    async function isLogUser() {
+      try {
+        await Auth.currentAuthenticatedUser();
+        setState(true);
+      } catch {
+        setState(false);
+      }
+    }
+    isLogUser();
+  }, []);
 
-                setState(false);
-            }
-        }
-        isLogUser();
-    }, [])
-
-
-    return (
-
-        isLog ? <Dashboard /> : <Home />
-
-    );
+  return isLog ? <Dashboard /> : <Home />;
 }
-
-
 
 export default Main;
