@@ -38,33 +38,17 @@
   }
 }
 
-
-input, textarea {
-
+input,
+textarea {
   border: solid 1.5px #cac9c9;
   -webkit-transition: 1s; /* Safari */
   transition: 1s;
 }
-input[type=text]:hover{
-  box-shadow: 0 0 5pt 0.5pt #D3D3D3;
-}
-input[type=text]:focus {
-  box-shadow: 0 0 5pt 2pt #D3D3D3;
-  outline-width: 0px;
-}
 
-input[type=email]:hover{
-  box-shadow: 0 0 5pt 0.5pt #D3D3D3;
-}
-input[type=email]:focus {
-  box-shadow: 0 0 5pt 2pt #D3D3D3;
-  outline-width: 0px;
-}
-
-textarea:hover{
-  box-shadow: 0 0 5pt 0.5pt #D3D3D3;
+textarea:hover {
+  box-shadow: 0 0 5pt 0.5pt #d3d3d3;
 }
 textarea:focus {
-  box-shadow: 0 0 5pt 2pt #D3D3D3;
+  box-shadow: 0 0 5pt 2pt #d3d3d3;
   outline-width: 0px;
 }
