@@ -17,6 +17,8 @@ import colors from "../../Colors/Colors";
 //material ui
 import Box from "@mui/material/Box";
 import { makeStyles } from "@mui/styles";
+import LoadingScreen from "../LoadingScreen";
+import DataNotFound from "../../DataNotFound";
 
 function DataList() {
   const classes = useStyles();
@@ -30,36 +32,34 @@ function DataList() {
       var dt = response.data;
 
       setData({ dt });
-      console.log(data);
     });
   };
 
-  if (data == null || data == "null") {
+  if (data === null || data === "null") {
     getWard();
   } else {
     var viewData = data["dt"];
-    console.log(viewData);
   }
 
-  if (data == null) {
+  if (data === null) {
     return (
       <div className="data">
         <Header />
-        <div>Loding...</div>
+        <LoadingScreen />
       </div>
     );
-  } else if (data["dt"].length == 0) {
+  } else if (data["dt"].length === 0) {
     return (
       <div className="data">
         <Header />
-        <div>No data found !</div>
+        <DataNotFound />
       </div>
     );
   }
   const dataCard = (data) => {
     return (
       <Box className={`div-card ${classes.item}`} display="flex" alignItems="center" justifyContent={"space-around"} onClick={() => loadViewer(data.file, data.file_type, data.remark, data.lat, data.long)}>
-        <div className={`cell ${classes.itemContent} ${classes.image}`}>{data.file_type == 0 ? <img src={FILE_PATH + data.file} width="40px" height="40px" /> : <img src={require("../../assets/video.png")} width="40px" height="40px" />}</div>
+        <div className={`cell ${classes.itemContent} ${classes.image}`}>{data.file_type === 0 ? <img src={FILE_PATH + data.file} width="40px" height="40px" alt="cover" /> : <img src={require("../../assets/video.png")} width="40px" height="40px" alt="videoCover" />}</div>
         <div className={`cell ${classes.itemContent}`}>{data.lat + "  |  " + data.long}</div>
         <div className={`cell ${classes.itemContent}`}>{data.remark}</div>
       </Box>

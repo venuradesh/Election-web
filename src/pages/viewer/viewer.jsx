@@ -29,7 +29,7 @@ function DataViewer() {
   const [ml, setML] = React.useState(null);
 
   const location = useLocation();
-  const { sta, lga, ward, pu, file, file_type, lat, long, remark } = location.state;
+  const { file, file_type, lat, long, remark } = location.state;
 
   const getMLRemark = (url) => {
     axios.get(API_URL + "mlPredict?" + "url=" + url).then((response) => {
@@ -260,6 +260,9 @@ const useStyles = makeStyles({
     paddingRight: 10,
     width: 720,
     height: 320,
+    dispaly: "flex",
+    alignItems: "center",
+    justifyContent: "center",
   },
 
   itemContainer: {
@@ -270,7 +273,6 @@ const useStyles = makeStyles({
 
   item: {
     border: "none",
-    height: "max-content",
     height: 80,
     borderBottom: `1px solid ${colors.backgroundColor}`,
     borderRadius: 0,

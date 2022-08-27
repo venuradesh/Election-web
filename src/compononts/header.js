@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Auth } from "aws-amplify";
 
@@ -19,16 +19,30 @@ import MenuItem from "@mui/material/MenuItem";
 // const settings = ['Account', 'Logout'];
 
 const Header = (props) => {
-  const pages = [
+  const [pages, setPages] = useState([
     ["Home", "/"],
     ["Results", "/results"],
     ["Visualization", "/visualization"],
     ["About Us", "/aboutus"],
     ["Contact Us", "/contactus"],
-  ];
+  ]);
   const navigate = useNavigate();
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+
+  useEffect(() => {
+    Auth.currentUserInfo().then((res) => {
+      if (res) {
+        setPages([
+          ["Home", "/dashboard"],
+          ["Results", "/results"],
+          ["Visualization", "/visualization"],
+          ["About Us", "/aboutus"],
+          ["Contact Us", "/contactus"],
+        ]);
+      }
+    });
+  }, []);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -48,7 +62,6 @@ const Header = (props) => {
   const signOut = async () => {
     await Auth.signOut();
     navigate("/");
-
     window.location.reload();
   };
 
@@ -137,9 +150,9 @@ const Header = (props) => {
             <Box sx={{ flexGrow: 0 }}>
               <Tooltip title="User Account">
                 {props.isHome ? (
-                  <Link style={{ textDecoration: "none" }} to="/login">
+                  <IconButton style={{ textDecoration: "none" }} onClick={() => props.signinclick(true)}>
                     <Avatar alt="User" src={require("../assets/avatar.png")} />
-                  </Link>
+                  </IconButton>
                 ) : (
                   <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                     <Avatar alt="User" src={require("../assets/avatar.png")} />
