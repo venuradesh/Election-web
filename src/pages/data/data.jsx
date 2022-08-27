@@ -27,21 +27,17 @@ function DataList() {
   const location = useLocation();
   const { sta, lga, ward, pu } = location.state;
 
-  const getWard = () => {
+   const getData = () => {
     axios.get(API_URL + "getData?key=" + SECRET_KEY + "&state=" + sta + "&lga=" + lga + "&ward=" + ward + "&pu=" + pu).then((response) => {
       var dt = response.data;
 
-      setData({ dt });
+      setData(dt );
     });
   };
 
-  if (data === null || data === "null") {
-    getWard();
-  } else {
-    var viewData = data["dt"];
-  }
+ 
 
-  if (data === null) {
+  if (data == null) {
     return (
       <div className="data">
         <Header />
@@ -65,8 +61,8 @@ function DataList() {
       </Box>
     );
   };
-  const loadViewer = (file, file_type, remark, lat, long) => {
-    navigate("/viewer", { state: { sta: sta, lga: lga, ward: ward, pu: pu, file: file, file_type: file_type, remark: remark, lat: lat, long: long } });
+  const loadViewer = (index) => {
+    navigate("/viewer", { state: { data: data , i: index} });
   };
 
   return (
@@ -86,7 +82,7 @@ function DataList() {
         <Box className={`cell-label ${classes.topics}`}>Location</Box>
         <Box className={`cell-label ${classes.topics}`}>Remark</Box>
       </Box>
-      <Box className={classes.itemsContainer}>{viewData.map((data) => dataCard(data))}</Box>
+      <Box className={classes.itemsContainer}>{viewData.map((data, index) => dataCard(data, index))}</Box>
     </Box>
   );
 }
