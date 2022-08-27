@@ -35,15 +35,6 @@ function App() {
           <Route exact path="/visualization" element={<Visualization />}></Route>
           <Route exact path="/data" element={<DataList />}></Route>
           <Route exact path="/viewer" element={<DataViewer />}></Route>
-          <Route
-            exact
-            path="/loading"
-            element={
-              <>
-                <LoadingScreen />
-              </>
-            }
-          ></Route>
         </Routes>
       </Router>
     </div>
