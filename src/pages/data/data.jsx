@@ -52,9 +52,9 @@ function DataList() {
       </div>
     );
   }
-  const dataCard = (data) => {
+  const dataCard = (data, index) => {
     return (
-      <Box className={`div-card ${classes.item}`} display="flex" alignItems="center" justifyContent={"space-around"} onClick={() => loadViewer(data.file, data.file_type, data.remark, data.lat, data.long)}>
+      <Box className={`div-card ${classes.item}`} display="flex" alignItems="center" justifyContent={"space-around"} onClick={() => loadViewer(index)}>
         <div className={`cell ${classes.itemContent} ${classes.image}`}>{data.file_type === 0 ? <img src={FILE_PATH + data.file} width="40px" height="40px" alt="cover" /> : <img src={require("../../assets/video.png")} width="40px" height="40px" alt="videoCover" />}</div>
         <div className={`cell ${classes.itemContent}`}>{data.lat + "  |  " + data.long}</div>
         <div className={`cell ${classes.itemContent}`}>{data.remark}</div>
