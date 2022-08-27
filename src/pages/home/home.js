@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Lottie from "react-lottie";
 import Header from "../../compononts/header";
 import animationData from "../../assets/election";
@@ -7,7 +7,8 @@ import colors from "../../Colors/Colors";
 import Image from "../../assets/election.jpg";
 import Dots from "../../assets/white-dots.png";
 import LoginImage from "../../assets/login.jpg";
-import { Auth } from 'aws-amplify';
+import { Auth } from "aws-amplify";
+import { useNavigate } from "react-router-dom";
 
 //material ui
 import Box from "@mui/material/Box";
@@ -18,13 +19,16 @@ import TextField from "@mui/material/TextField";
 import { styled } from "@mui/material/styles";
 import CloseIcon from "@mui/icons-material/Close";
 
-
 function Home() {
+  const navigate = useNavigate();
   const classes = useStyles();
   const [signInClick, setSignInClick] = useState(false);
   const [tabClick, setTabClick] = useState("login");
-  const [password, setPassword] = useState('');
-  const [user, setUser] = useState('');
+  const [password, setPassword] = useState("");
+  const [user, setUser] = useState("");
+  const [userLogged, setUserLogged] = useState(false);
+  const [error, setError] = useState("");
+  const [createAccountClick, setCreateAccountClick] = useState(false);
 
   const defaultOptions = {
     loop: true,
@@ -35,12 +39,28 @@ function Home() {
     },
   };
 
+  const checkCreateAccountConditions = () => {
+    const userName = document.getElementById("userName").value;
+    const password = document.getElementById("password").value;
+    const confirmPassword = document.getElementById("confirmPassword").value;
+    const email = document.getElementById("email").value;
+
+    if (userName && password && confirmPassword && email) {
+      if (password !== confirmPassword) {
+        setError("*Password not match");
+        return;
+      }
+
+      setCreateAccountClick(true);
+    }
+  };
+
   return (
     <Box className="home" sx={{ position: "relative" }}>
       <Box className={classes.background} bgcolor={"primary.main"}></Box>
       <Box className={classes.backgroundImage}></Box>
       <Box className={classes.whiteDots}></Box>
-      <Header isHome={true} />
+      <Header isHome={true} signinclick={setSignInClick} userLogged={userLogged} />
       <Box className="gird" display="flex" alignItems="center" justifyContent={"space-between"} sx={{ pl: 1 }}>
         <Box class="cellContainer" display={"flex"} flexDirection="column" sx={{ width: 300, position: "relative", top: 30 }}>
           <Typography variant="h5" sx={{ fontSize: 80, fontWeight: "800", fontFamily: "roboto", color: "secondary.main" }}>
@@ -65,7 +85,14 @@ function Home() {
         <Box className={classes.loginContainer}>
           <Box className={classes.backgroundLogin}></Box>
           <Box className={classes.loginWrapper} sx={{ boxShadow: 2 }}>
-            <Box className={classes.closeIcon} sx={{ boxShadow: 1 }} onClick={() => setSignInClick(false)}>
+            <Box
+              className={classes.closeIcon}
+              sx={{ boxShadow: 1 }}
+              onClick={() => {
+                setSignInClick(false);
+                setCreateAccountClick(false);
+              }}
+            >
               <CloseIcon sx={{ fontSize: 16 }} />
             </Box>
             <Box className={classes.coverWrapper}></Box>
@@ -74,20 +101,44 @@ function Home() {
                 <Box>
                   <Box className={classes.loginTitle}>Login</Box>
                   <Box className={classes.itemContainer}>
-                    <TextField value={user}
-                      onChange={(event) => { setUser(event.target.value) }} variant="standard" id="userName" label="User Name" className={classes.inputField} sx={{ mb: 1 }} />
-                    <TextField value={password}
-                      onChange={(event) => { setPassword(event.target.value) }} variant="standard" id="password" label="Password" type="password" className={classes.inputField} sx={{ mb: 1 }} />
-                    <Button variant={"contained"} color="primary" className={classes.btn} sx={{ mt: 2, mb: 2 }}
+                    <TextField
+                      onChange={(event) => {
+                        setUser(event.target.value);
+                      }}
+                      variant="standard"
+                      id="userName"
+                      label="User Name"
+                      className={classes.inputField}
+                      sx={{ mb: 1 }}
+                    />
+                    <TextField
+                      onChange={(event) => {
+                        setPassword(event.target.value);
+                      }}
+                      variant="standard"
+                      id="password"
+                      label="Password"
+                      type="password"
+                      className={classes.inputField}
+                      sx={{ mb: 1 }}
+                    />
+                    <Button
+                      variant={"contained"}
+                      color="primary"
+                      className={classes.btn}
+                      sx={{ mt: 2, mb: 2 }}
                       onClick={() => {
-                        console.log(password);
-                        Auth.signIn(user, password).then((result) => {
-                          window.location.reload();
-                          //Success 
-                        }).catch((err) => {
-                          // Something is Wrong
-                        })
-                      }}>
+                        Auth.signIn(user, password)
+                          .then((result) => {
+                            setUserLogged(true);
+                            navigate("/dashboard");
+                            //Success
+                          })
+                          .catch((err) => {
+                            // Something is Wrong
+                          });
+                      }}
+                    >
                       Sign in
                     </Button>
                     <Box className={classes.link}>Forgot Password?</Box>
@@ -96,23 +147,45 @@ function Home() {
               ) : (
                 <Box>
                   <Box className={classes.loginTitle}>SignUp</Box>
-                  <Box className={classes.itemContainer}>
-                    <TextField variant="standard" id="userName" label="User Name" className={classes.inputField} sx={{ mb: 1 }} />
-                    <TextField variant="standard" id="password" label="Password" type="password" className={classes.inputField} sx={{ mb: 1 }} />
-                    <TextField variant="standard" id="confirmPassword" label="Confirm Password" type="password" className={classes.inputField} sx={{ mb: 1 }} />
-                    <TextField variant="standard" id="email" label="Email" type="email" className={classes.inputField} sx={{ mb: 1 }} />
-                    <Button variant={"contained"} color="primary" className={classes.btn} sx={{ mt: 2, mb: 2 }}
-                    >
-                      Create Account
-                    </Button>
-                  </Box>
+                  {!createAccountClick ? (
+                    <Box className={classes.itemContainer}>
+                      <TextField variant="standard" id="userName" label="User Name" className={classes.inputField} sx={{ mb: 1 }} />
+                      <TextField variant="standard" id="password" label="Password" type="password" className={classes.inputField} sx={{ mb: 1 }} />
+                      <TextField variant="standard" id="confirmPassword" label="Confirm Password" type="password" className={classes.inputField} sx={{ mb: 1 }} />
+                      <TextField variant="standard" id="email" label="Email" type="email" className={classes.inputField} sx={{ mb: 1 }} />
+                      <typography className={classes.errorMsg}>{error}</typography>
+                      <Button variant={"contained"} color="primary" className={classes.btn} sx={{ mt: 2, mb: 2 }} onClick={() => checkCreateAccountConditions()}>
+                        Create Account
+                      </Button>
+                    </Box>
+                  ) : (
+                    <Box className={classes.emailSent}>
+                      <Box className={classes.emailMessage} sx={{ mt: 2 }}>
+                        We have sent a code by email to Your Email provided.
+                        <Typography sx={{ mt: 2, fontSize: 14, mb: 2 }}>Enter it below to confirm your account</Typography>
+                      </Box>
+                      <TextField variant="standard" id="verification-code" label="Verification Code" className={classes.inputField} sx={{ mt: 1 }} />
+                      <Button variant={"contained"} color="primary" className={classes.btn} sx={{ mt: 2, mb: 2 }}>
+                        Confirm Account
+                      </Button>
+                    </Box>
+                  )}
                 </Box>
               )}
               <Box className={classes.btnContainer}>
                 <TabButton variant="contained" color={tabClick === "login" ? "secondary" : "primary"} className={classes.loginBtn} onClick={() => setTabClick("login")}>
                   Login
                 </TabButton>
-                <TabButton variant="contained" color={tabClick === "signup" ? "secondary" : "primary"} className={classes.signupBtn} onClick={() => setTabClick("signup")}>
+                <TabButton
+                  variant="contained"
+                  color={tabClick === "signup" ? "secondary" : "primary"}
+                  className={classes.signupBtn}
+                  onClick={() => {
+                    setTabClick("signup");
+                    setCreateAccountClick(false);
+                    setError("");
+                  }}
+                >
                   Signup
                 </TabButton>
               </Box>
@@ -293,8 +366,6 @@ const useStyles = makeStyles({
   btnContainer: {
     display: "flex",
     justifyContent: "space-between",
-    columnGap: 0,
-
     columnGap: 1,
   },
 
@@ -304,6 +375,10 @@ const useStyles = makeStyles({
 
   loginBtn: {
     flex: 1,
+  },
+
+  emailMessage: {
+    fontSize: 14,
   },
 });
 

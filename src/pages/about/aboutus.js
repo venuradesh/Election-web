@@ -3,7 +3,6 @@ import React from "react";
 //material ui
 import Box from "@mui/material/Box";
 import { makeStyles } from "@mui/styles";
-import FacebookOutlinedIcon from "@mui/icons-material/FacebookOutlined";
 
 import colors from "../../Colors/Colors";
 import Facebook from "../../assets/facebook.png";
