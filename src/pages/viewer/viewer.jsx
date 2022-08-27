@@ -23,24 +23,43 @@ import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
 
 function DataViewer() {
+  const location = useLocation();
+  const { data, i } = location.state;
   const classes = useStyles();
   const [visible, setVisible] = React.useState(false);
+  const [index, setIndex] = React.useState(i);
   const navigate = useNavigate();
   const [ml, setML] = React.useState(null);
 
-  const location = useLocation();
-  const { file, file_type, lat, long, remark } = location.state;
+
+
+  const nextPage = () => {
+    let i = index + 1;
+    if (i < data.length) {
+
+      setIndex(i)
+    }
+  }
+
+  const backPage = () => {
+    let i = index - 1;
+    if (i > -1) {
+
+      setIndex(i)
+    }
+  }
 
   const getMLRemark = (url) => {
+    // console.log(API_URL + "mlPredict?" + "url=" + url);
     axios.get(API_URL + "mlPredict?" + "url=" + url).then((response) => {
       var mlData = response.data;
-
+      console.log("ml" + mlData);
       setML({ mlData });
     });
   };
 
   if (ml == null) {
-    getMLRemark(FILE_PATH + file);
+    getMLRemark(FILE_PATH + data[index].file);
   }
 
   return (
@@ -53,56 +72,100 @@ function DataViewer() {
           <ArrowBackIcon />
         </IconButton>
       </div>
-      <Box display="flex" alignItems="center" justifyContent={"center"} sx={{ boxShadow: 1 }} className={`${classes.btnNavigate} ${classes.next}`}>
-        <NavigateNextIcon />
-      </Box>
-      <Box display="flex" alignItems="center" justifyContent={"center"} sx={{ boxShadow: 1 }} className={`${classes.btnNavigate} ${classes.prev}`}>
-        <NavigateBeforeIcon />
-      </Box>
+
+      {index > data.length - 2 ? <Box display="flex" alignItems="center" justifyContent={"center"} sx={{ boxShadow: 1 }} className={`${classes.btnNavigate} ${classes.next}`}>
+        <IconButton onClick={() => nextPage()} aria-label="back"><NavigateNextIcon /></IconButton>
+      </Box> : <></>}
+      {index > 0 ? <Box display="flex" alignItems="center" justifyContent={"center"} sx={{ boxShadow: 1 }} className={`${classes.btnNavigate} ${classes.prev}`}>
+        <IconButton onClick={() => backPage()} aria-label="back"> <NavigateBeforeIcon /> </IconButton>
+      </Box> : <></>}
       <Box display="flex" flexDirection="row" justifyContent={"space-around"} columnGap={2} className={classes.container}>
         <Box className={`row-1 ${classes.row1}`}>
           <div className={`div-image ${classes.imageContainer}`}>
             <Box className={classes.imageTint}></Box>
-            {file_type === 0 ? (
+            {data[index].file_type === 0 ? (
               !visible ? (
                 <img
                   onClick={() => {
                     setVisible(true);
                   }}
-                  src={FILE_PATH + file}
+                  src={FILE_PATH + data[index].file}
                   alt="uploaded"
                   className={classes.image}
                 />
               ) : null
             ) : (
-              <ReactPlayer width={"100%"} height={"100%"} className="video-player" controls={true} url={FILE_PATH + file} />
+              <ReactPlayer width={"100%"} height={"100%"} className="video-player" controls={true} url={FILE_PATH + data[index].file} />
             )}
             <Viewer
               onClose={() => {
                 setVisible(false);
               }}
               visible={visible}
-              images={[{ src: FILE_PATH + file, alt: "" }]}
+              images={[{ src: FILE_PATH + data[index].file, alt: "" }]}
               className={classes.reactViewer}
             />
           </div>
         </Box>
         <Box display="flex" flexDirection="column" rowGap={0} className={`row-2 ${classes.row2}`}>
           <Box className={`div-map ${classes.mapContainer}`}>
-            <Map center={{ lat: lat, lng: long }} />
+            <Map center={{ lat: data[index].lat, lng: data[index].long }} />
           </Box>
           <Box className={`div-remark ${classes.itemContainer}`}>
+            <Box display="flex" flexDirection={"column"} justifyContent="center" alignItems="center" className={`div-text ${classes.item}`}>
+              <Typography variant={"h6"} mt={0.3} mb={0.3} sx={{ fontSize: 16 }} className={`head-text ${classes.typo1}`}>
+                Date & Time
+              </Typography>
+              <Typography variant={"body1"} className={`remark-text ${classes.typo2}`} sx={{ fontSize: 12 }}>
+                Lorem ipsum dolor sit amet.
+              </Typography>
+            </Box>
+          </Box>
+          <Box className={`div-remark ${classes.itemContainer}`}>
+            <Box display="flex" flexDirection={"column"} justifyContent="center" alignItems="center" className={`div-text ${classes.item}`}>
+              <Typography variant={"h6"} mt={0.3} mb={0.3} sx={{ fontSize: 16 }} className={`head-text ${classes.typo1}`}>
+                Logitude & Latitude
+              </Typography>
+              <Typography variant={"body1"} className={`remark-text ${classes.typo2}`} sx={{ fontSize: 12 }}>
+                {data[index].lat} | {data[index].long}
+              </Typography>
+            </Box>
+          </Box>
+          
+
+
+          <Box className={`div-remark ${classes.itemContainer}`}>
+            <Box display="flex" flexDirection={"column"} justifyContent="center" alignItems="center" className={`div-text ${classes.item}`}>
+              <Typography variant={"h6"} mt={0.3} mb={0.3} sx={{ fontSize: 16 }} className={`head-text ${classes.typo1}`}>
+                Phone Number of Sender
+              </Typography>
+              <Typography variant={"body1"} className={`remark-text ${classes.typo2}`} sx={{ fontSize: 12 }}>
+                0771234567
+              </Typography>
+            </Box>
+          </Box>
+          <Box className={`div-remark ${classes.itemContainer}`}>
+            <Box display="flex" flexDirection={"column"} justifyContent="center" alignItems="center" className={`div-text ${classes.item}`}>
+              <Typography variant={"h6"} mt={0.3} mb={0.3} sx={{ fontSize: 16 }} className={`head-text ${classes.typo1}`}>
+                Email of Sender
+              </Typography>
+              <Typography variant={"body1"} className={`remark-text ${classes.typo2}`} sx={{ fontSize: 12 }}>
+                sample@gmail.com
+              </Typography>
+            </Box>
+          </Box>
+<Box className={`div-remark ${classes.itemContainer}`}>
             <Box display="flex" flexDirection={"column"} justifyContent="center" alignItems="center" className={`div-text ${classes.item}`}>
               <Typography variant={"h6"} mt={0.3} mb={0.3} sx={{ fontSize: 16 }} className={`head-text ${classes.typo1}`}>
                 Addional Remark
               </Typography>
               <Typography variant={"body1"} className={`remark-text ${classes.typo2}`} sx={{ fontSize: 12 }}>
-                {remark}
+                {data[index].remark}
               </Typography>
             </Box>
           </Box>
           <Box className={`div-remark ${classes.itemContainer}`}>
-            {file_type === 0 ? (
+            {data[index].file_type === 0 ? (
               <Box display="flex" flexDirection={"column"} justifyContent="center" alignItems="center" className={`div-text ${classes.item}`}>
                 <Typography variant={"h6"} mt={0.3} mb={0.3} sx={{ fontSize: 16 }} className={`head-text ${classes.typo1}`}>
                   ML Remark
@@ -122,46 +185,6 @@ function DataViewer() {
                 <Typography sx={{ fontSize: 12, color: "red" }}>Ml Remark not provide for video !</Typography>
               </Box>
             )}
-          </Box>
-          <Box className={`div-remark ${classes.itemContainer}`}>
-            <Box display="flex" flexDirection={"column"} justifyContent="center" alignItems="center" className={`div-text ${classes.item}`}>
-              <Typography variant={"h6"} mt={0.3} mb={0.3} sx={{ fontSize: 16 }} className={`head-text ${classes.typo1}`}>
-                Logitude & Latitude
-              </Typography>
-              <Typography variant={"body1"} className={`remark-text ${classes.typo2}`} sx={{ fontSize: 12 }}>
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nisi, perferendis.
-              </Typography>
-            </Box>
-          </Box>
-          <Box className={`div-remark ${classes.itemContainer}`}>
-            <Box display="flex" flexDirection={"column"} justifyContent="center" alignItems="center" className={`div-text ${classes.item}`}>
-              <Typography variant={"h6"} mt={0.3} mb={0.3} sx={{ fontSize: 16 }} className={`head-text ${classes.typo1}`}>
-                Date & Time
-              </Typography>
-              <Typography variant={"body1"} className={`remark-text ${classes.typo2}`} sx={{ fontSize: 12 }}>
-                Lorem ipsum dolor sit amet.
-              </Typography>
-            </Box>
-          </Box>
-          <Box className={`div-remark ${classes.itemContainer}`}>
-            <Box display="flex" flexDirection={"column"} justifyContent="center" alignItems="center" className={`div-text ${classes.item}`}>
-              <Typography variant={"h6"} mt={1} mb={1} className={`head-text ${classes.typo1}`}>
-                Phone number of Sender
-              </Typography>
-              <Typography variant={"body1"} className={`remark-text ${classes.typo2}`} sx={{ fontSize: 12 }}>
-                0771234567
-              </Typography>
-            </Box>
-          </Box>
-          <Box className={`div-remark ${classes.itemContainer}`}>
-            <Box display="flex" flexDirection={"column"} justifyContent="center" alignItems="center" className={`div-text ${classes.item}`}>
-              <Typography variant={"h6"} mt={1} mb={1} className={`head-text ${classes.typo1}`}>
-                AI predictions
-              </Typography>
-              <Typography variant={"body1"} className={`remark-text ${classes.typo2}`} sx={{ fontSize: 12 }}>
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Optio, ullam!
-              </Typography>
-            </Box>
           </Box>
         </Box>
       </Box>
@@ -216,8 +239,7 @@ const useStyles = makeStyles({
 
   row2: {
     height: "100%",
-    overflowX: "hidden",
-    overflowY: "auto",
+  
     paddingBottom: 10,
     paddingLeft: 10,
 
@@ -260,9 +282,6 @@ const useStyles = makeStyles({
     paddingRight: 10,
     width: 720,
     height: 320,
-    dispaly: "flex",
-    alignItems: "center",
-    justifyContent: "center",
   },
 
   itemContainer: {
@@ -273,6 +292,7 @@ const useStyles = makeStyles({
 
   item: {
     border: "none",
+    height: "max-content",
     height: 80,
     borderBottom: `1px solid ${colors.backgroundColor}`,
     borderRadius: 0,
