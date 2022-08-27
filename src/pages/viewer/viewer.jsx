@@ -64,8 +64,8 @@ function DataViewer() {
 
   return (
     <Box className={`dataviewer ${classes.pageWrapper}`}>
-      <Box className={classes.background}></Box>
-      <Box className={classes.familyImage}></Box>
+     
+    
       <Header />
       <div className="div-back">
         <IconButton onClick={() => navigate(-1)} aria-label="back">
@@ -131,7 +131,7 @@ function DataViewer() {
               </Typography>
             </Box>
           </Box>
-          
+
 
 
           <Box className={`div-remark ${classes.itemContainer}`}>
@@ -154,7 +154,7 @@ function DataViewer() {
               </Typography>
             </Box>
           </Box>
-<Box className={`div-remark ${classes.itemContainer}`}>
+          <Box className={`div-remark ${classes.itemContainer}`}>
             <Box display="flex" flexDirection={"column"} justifyContent="center" alignItems="center" className={`div-text ${classes.item}`}>
               <Typography variant={"h6"} mt={0.3} mb={0.3} sx={{ fontSize: 16 }} className={`head-text ${classes.typo1}`}>
                 Addional Remark
@@ -233,16 +233,15 @@ const useStyles = makeStyles({
   },
 
   row1: {
-    width: 500,
+    width: "50%",
     height: "100%",
   },
 
   row2: {
     height: "100%",
-  
+    width: "50%",
     paddingBottom: 10,
-    paddingLeft: 10,
-
+  
     "&::-webkit-scrollbar": {
       width: 5,
     },
