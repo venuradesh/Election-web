@@ -31,23 +31,19 @@ function DataViewer() {
   const navigate = useNavigate();
   const [ml, setML] = React.useState(null);
 
-
-
   const nextPage = () => {
     let i = index + 1;
     if (i < data.length) {
-
-      setIndex(i)
+      setIndex(i);
     }
-  }
+  };
 
   const backPage = () => {
     let i = index - 1;
     if (i > -1) {
-
-      setIndex(i)
+      setIndex(i);
     }
-  }
+  };
 
   const getMLRemark = (url) => {
     // console.log(API_URL + "mlPredict?" + "url=" + url);
@@ -64,8 +60,6 @@ function DataViewer() {
 
   return (
     <Box className={`dataviewer ${classes.pageWrapper}`}>
-     
-    
       <Header />
       <div className="div-back">
         <IconButton onClick={() => navigate(-1)} aria-label="back">
@@ -73,12 +67,25 @@ function DataViewer() {
         </IconButton>
       </div>
 
-      {index > data.length - 2 ? <Box display="flex" alignItems="center" justifyContent={"center"} sx={{ boxShadow: 1 }} className={`${classes.btnNavigate} ${classes.next}`}>
-        <IconButton onClick={() => nextPage()} aria-label="back"><NavigateNextIcon /></IconButton>
-      </Box> : <></>}
-      {index > 0 ? <Box display="flex" alignItems="center" justifyContent={"center"} sx={{ boxShadow: 1 }} className={`${classes.btnNavigate} ${classes.prev}`}>
-        <IconButton onClick={() => backPage()} aria-label="back"> <NavigateBeforeIcon /> </IconButton>
-      </Box> : <></>}
+      {index > data.length - 2 ? (
+        <Box display="flex" alignItems="center" justifyContent={"center"} sx={{ boxShadow: 1 }} className={`${classes.btnNavigate} ${classes.next}`}>
+          <IconButton onClick={() => nextPage()} aria-label="back">
+            <NavigateNextIcon />
+          </IconButton>
+        </Box>
+      ) : (
+        <></>
+      )}
+      {index > 0 ? (
+        <Box display="flex" alignItems="center" justifyContent={"center"} sx={{ boxShadow: 1 }} className={`${classes.btnNavigate} ${classes.prev}`}>
+          <IconButton onClick={() => backPage()} aria-label="back">
+            {" "}
+            <NavigateBeforeIcon />{" "}
+          </IconButton>
+        </Box>
+      ) : (
+        <></>
+      )}
       <Box display="flex" flexDirection="row" justifyContent={"space-around"} columnGap={2} className={classes.container}>
         <Box className={`row-1 ${classes.row1}`}>
           <div className={`div-image ${classes.imageContainer}`}>
@@ -111,80 +118,80 @@ function DataViewer() {
           <Box className={`div-map ${classes.mapContainer}`}>
             <Map center={{ lat: data[index].lat, lng: data[index].long }} />
           </Box>
-          <Box className={`div-remark ${classes.itemContainer}`}>
-            <Box display="flex" flexDirection={"column"} justifyContent="center" alignItems="center" className={`div-text ${classes.item}`}>
-              <Typography variant={"h6"} mt={0.3} mb={0.3} sx={{ fontSize: 16 }} className={`head-text ${classes.typo1}`}>
-                Date & Time
-              </Typography>
-              <Typography variant={"body1"} className={`remark-text ${classes.typo2}`} sx={{ fontSize: 12 }}>
-                Lorem ipsum dolor sit amet.
-              </Typography>
-            </Box>
-          </Box>
-          <Box className={`div-remark ${classes.itemContainer}`}>
-            <Box display="flex" flexDirection={"column"} justifyContent="center" alignItems="center" className={`div-text ${classes.item}`}>
-              <Typography variant={"h6"} mt={0.3} mb={0.3} sx={{ fontSize: 16 }} className={`head-text ${classes.typo1}`}>
-                Logitude & Latitude
-              </Typography>
-              <Typography variant={"body1"} className={`remark-text ${classes.typo2}`} sx={{ fontSize: 12 }}>
-                {data[index].lat} | {data[index].long}
-              </Typography>
-            </Box>
-          </Box>
-
-
-
-          <Box className={`div-remark ${classes.itemContainer}`}>
-            <Box display="flex" flexDirection={"column"} justifyContent="center" alignItems="center" className={`div-text ${classes.item}`}>
-              <Typography variant={"h6"} mt={0.3} mb={0.3} sx={{ fontSize: 16 }} className={`head-text ${classes.typo1}`}>
-                Phone Number of Sender
-              </Typography>
-              <Typography variant={"body1"} className={`remark-text ${classes.typo2}`} sx={{ fontSize: 12 }}>
-                0771234567
-              </Typography>
-            </Box>
-          </Box>
-          <Box className={`div-remark ${classes.itemContainer}`}>
-            <Box display="flex" flexDirection={"column"} justifyContent="center" alignItems="center" className={`div-text ${classes.item}`}>
-              <Typography variant={"h6"} mt={0.3} mb={0.3} sx={{ fontSize: 16 }} className={`head-text ${classes.typo1}`}>
-                Email of Sender
-              </Typography>
-              <Typography variant={"body1"} className={`remark-text ${classes.typo2}`} sx={{ fontSize: 12 }}>
-                sample@gmail.com
-              </Typography>
-            </Box>
-          </Box>
-          <Box className={`div-remark ${classes.itemContainer}`}>
-            <Box display="flex" flexDirection={"column"} justifyContent="center" alignItems="center" className={`div-text ${classes.item}`}>
-              <Typography variant={"h6"} mt={0.3} mb={0.3} sx={{ fontSize: 16 }} className={`head-text ${classes.typo1}`}>
-                Addional Remark
-              </Typography>
-              <Typography variant={"body1"} className={`remark-text ${classes.typo2}`} sx={{ fontSize: 12 }}>
-                {data[index].remark}
-              </Typography>
-            </Box>
-          </Box>
-          <Box className={`div-remark ${classes.itemContainer}`}>
-            {data[index].file_type === 0 ? (
+          <Box className={classes.itemsContainer}>
+            <Box className={`div-remark ${classes.itemContainer}`}>
               <Box display="flex" flexDirection={"column"} justifyContent="center" alignItems="center" className={`div-text ${classes.item}`}>
                 <Typography variant={"h6"} mt={0.3} mb={0.3} sx={{ fontSize: 16 }} className={`head-text ${classes.typo1}`}>
-                  ML Remark
+                  Date & Time
                 </Typography>
                 <Typography variant={"body1"} className={`remark-text ${classes.typo2}`} sx={{ fontSize: 12 }}>
-                  {ml != null ? Object.keys(ml["mlData"]) : "Loading..."}
-                </Typography>
-                <Typography variant={"body1"} className={`remark-text ${classes.typo2}`} sx={{ fontSize: 12 }}>
-                  {ml != null ? ml["mlData"][Object.keys(ml["mlData"])] : null}
+                  Lorem ipsum dolor sit amet.
                 </Typography>
               </Box>
-            ) : (
+            </Box>
+            <Box className={`div-remark ${classes.itemContainer}`}>
               <Box display="flex" flexDirection={"column"} justifyContent="center" alignItems="center" className={`div-text ${classes.item}`}>
                 <Typography variant={"h6"} mt={0.3} mb={0.3} sx={{ fontSize: 16 }} className={`head-text ${classes.typo1}`}>
-                  ML Remark
+                  Logitude & Latitude
                 </Typography>
-                <Typography sx={{ fontSize: 12, color: "red" }}>Ml Remark not provide for video !</Typography>
+                <Typography variant={"body1"} className={`remark-text ${classes.typo2}`} sx={{ fontSize: 12 }}>
+                  {data[index].lat} | {data[index].long}
+                </Typography>
               </Box>
-            )}
+            </Box>
+
+            <Box className={`div-remark ${classes.itemContainer}`}>
+              <Box display="flex" flexDirection={"column"} justifyContent="center" alignItems="center" className={`div-text ${classes.item}`}>
+                <Typography variant={"h6"} mt={0.3} mb={0.3} sx={{ fontSize: 16 }} className={`head-text ${classes.typo1}`}>
+                  Phone Number of Sender
+                </Typography>
+                <Typography variant={"body1"} className={`remark-text ${classes.typo2}`} sx={{ fontSize: 12 }}>
+                  0771234567
+                </Typography>
+              </Box>
+            </Box>
+            <Box className={`div-remark ${classes.itemContainer}`}>
+              <Box display="flex" flexDirection={"column"} justifyContent="center" alignItems="center" className={`div-text ${classes.item}`}>
+                <Typography variant={"h6"} mt={0.3} mb={0.3} sx={{ fontSize: 16 }} className={`head-text ${classes.typo1}`}>
+                  Email of Sender
+                </Typography>
+                <Typography variant={"body1"} className={`remark-text ${classes.typo2}`} sx={{ fontSize: 12 }}>
+                  sample@gmail.com
+                </Typography>
+              </Box>
+            </Box>
+            <Box className={`div-remark ${classes.itemContainer}`}>
+              <Box display="flex" flexDirection={"column"} justifyContent="center" alignItems="center" className={`div-text ${classes.item}`}>
+                <Typography variant={"h6"} mt={0.3} mb={0.3} sx={{ fontSize: 16 }} className={`head-text ${classes.typo1}`}>
+                  Addional Remark
+                </Typography>
+                <Typography variant={"body1"} className={`remark-text ${classes.typo2}`} sx={{ fontSize: 12 }}>
+                  {data[index].remark}
+                </Typography>
+              </Box>
+            </Box>
+            <Box className={`div-remark ${classes.itemContainer}`}>
+              {data[index].file_type === 0 ? (
+                <Box display="flex" flexDirection={"column"} justifyContent="center" alignItems="center" className={`div-text ${classes.item}`}>
+                  <Typography variant={"h6"} mt={0.3} mb={0.3} sx={{ fontSize: 16 }} className={`head-text ${classes.typo1}`}>
+                    ML Remark
+                  </Typography>
+                  <Typography variant={"body1"} className={`remark-text ${classes.typo2}`} sx={{ fontSize: 12 }}>
+                    {ml != null ? Object.keys(ml["mlData"]) : "Loading..."}
+                  </Typography>
+                  <Typography variant={"body1"} className={`remark-text ${classes.typo2}`} sx={{ fontSize: 12 }}>
+                    {ml != null ? ml["mlData"][Object.keys(ml["mlData"])] : null}
+                  </Typography>
+                </Box>
+              ) : (
+                <Box display="flex" flexDirection={"column"} justifyContent="center" alignItems="center" className={`div-text ${classes.item}`}>
+                  <Typography variant={"h6"} mt={0.3} mb={0.3} sx={{ fontSize: 16 }} className={`head-text ${classes.typo1}`}>
+                    ML Remark
+                  </Typography>
+                  <Typography sx={{ fontSize: 12, color: "red" }}>Ml Remark not provide for video !</Typography>
+                </Box>
+              )}
+            </Box>
           </Box>
         </Box>
       </Box>
@@ -241,7 +248,7 @@ const useStyles = makeStyles({
     height: "100%",
     width: "50%",
     paddingBottom: 10,
-  
+
     "&::-webkit-scrollbar": {
       width: 5,
     },
@@ -283,8 +290,13 @@ const useStyles = makeStyles({
     height: 320,
   },
 
+  itemsContainer: {
+    display: "flex",
+    flexWrap: "wrap",
+  },
+
   itemContainer: {
-    width: "100%",
+    width: "50%",
     paddingLeft: 10,
     paddingRight: 10,
   },
