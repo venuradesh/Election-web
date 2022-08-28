@@ -38,13 +38,14 @@ function DataList() {
  
 
   if (data == null) {
+    getData();
     return (
       <div className="data">
         <Header />
         <LoadingScreen />
       </div>
     );
-  } else if (data["dt"].length === 0) {
+  } else if (data.length === 0) {
     return (
       <div className="data">
         <Header />
@@ -82,7 +83,7 @@ function DataList() {
         <Box className={`cell-label ${classes.topics}`}>Location</Box>
         <Box className={`cell-label ${classes.topics}`}>Remark</Box>
       </Box>
-      <Box className={classes.itemsContainer}>{viewData.map((data, index) => dataCard(data, index))}</Box>
+      <Box className={classes.itemsContainer}>{data.map((data, index) => dataCard(data, index))}</Box>
     </Box>
   );
 }
