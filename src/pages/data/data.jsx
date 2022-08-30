@@ -27,15 +27,13 @@ function DataList() {
   const location = useLocation();
   const { sta, lga, ward, pu } = location.state;
 
-   const getData = () => {
+  const getData = () => {
     axios.get(API_URL + "getData?key=" + SECRET_KEY + "&state=" + sta + "&lga=" + lga + "&ward=" + ward + "&pu=" + pu).then((response) => {
       var dt = response.data;
 
-      setData(dt );
+      setData(dt);
     });
   };
-
- 
 
   if (data == null) {
     getData();
@@ -63,12 +61,12 @@ function DataList() {
     );
   };
   const loadViewer = (index) => {
-    navigate("/viewer", { state: { data: data , i: index} });
+    navigate("/viewer", { state: { data: data, i: index } });
   };
 
   return (
     <Box className={`data ${classes.pageWrapper}`}>
-      <Box sx={{ zIndex: 1, position: "absolute", bottom: 0, left: 0, width: "100%", height: 300, backgroundImage: `url(${Image})`, backgroundSize: "contain", backgroundPosition: "center", opacity: 0.3 }}></Box>
+      {/* <Box sx={{ zIndex: 1, position: "absolute", bottom: 0, left: 0, width: "100%", height: 300, backgroundImage: `url(${Image})`, backgroundSize: "contain", backgroundPosition: "center", opacity: 0.3 }}></Box> */}
 
       <Header />
 

@@ -43,8 +43,8 @@ class Dashboard extends React.Component {
       <div>
         {" "}
         <Header isHome={false} />
-        <Box sx={{ position: "absolute", bottom: 0, left: 0, width: "100%", height: 300, backgroundImage: `url(${Image})`, backgroundSize: "contain", backgroundPosition: "center", opacity: 0.3 }}></Box>
-        <Box className="dashboard" display="flex" flexDirection={"column"} alignItems="center" justifyContent={"center"}>
+        {/* <Box sx={{ position: "absolute", bottom: 0, left: 0, width: "100%", height: 300, backgroundImage: `url(${Image})`, backgroundSize: "contain", backgroundPosition: "center", opacity: 0.3 }}></Box> */}
+        <Box className="dashboard" display="flex" flexDirection={"column"} alignItems="center" justifyContent={"center"} sx={{ width: "100%" }}>
           <Typography variant="h4" sx={!this.state.clicked ? { fontWeight: "800", mb: 2, textTransform: "uppercase" } : { display: "none" }}>
             Select The State, LGA and Ward
           </Typography>
@@ -52,7 +52,7 @@ class Dashboard extends React.Component {
           {this.state.poling == null ? (
             <div></div>
           ) : (
-            <Box className="container-table" sx={{ width: 900, zIndex: 10 }}>
+            <Box className="container-table" sx={{ width: "80%", zIndex: 10 }}>
               <DataTable rows={this.state.poling} state={this.state.selectedState} lga={this.state.selectedLGA} ward={this.state.selectedWard} />
             </Box>
           )}

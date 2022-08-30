@@ -61,7 +61,7 @@ function Home() {
       <Box className={classes.backgroundImage}></Box>
       <Box className={classes.whiteDots}></Box>
       <Header isHome={true} signinclick={setSignInClick} userLogged={userLogged} />
-      <Box className="gird" display="flex" alignItems="center" justifyContent={"space-between"} sx={{ pl: 1 }}>
+      <Box className="gird" display="flex" alignItems="center" justifyContent={"space-between"} sx={{ pt: "5%", px: "5%" }}>
         <Box class="cellContainer" display={"flex"} flexDirection="column" sx={{ width: 300, position: "relative", top: 30 }}>
           <Typography variant="h5" sx={{ fontSize: 80, fontWeight: "800", fontFamily: "roboto", color: "secondary.main" }}>
             ELECTION
@@ -76,9 +76,9 @@ function Home() {
           </Box>
         </Box>
         <div class="cellContainer">
-          <div>
+          <Box sx={{ position: "relative", left: "5%" }}>
             <Lottie options={defaultOptions} height={400} width={500} />
-          </div>
+          </Box>
         </div>
       </Box>
       {signInClick ? (
@@ -217,7 +217,7 @@ const useStyles = makeStyles({
     height: 200,
     position: "absolute",
     bottom: -100,
-    left: "30%",
+    left: "70%",
     opacity: 0.2,
     backgroundImage: `url(${Dots})`,
     backgroundSize: "contain",

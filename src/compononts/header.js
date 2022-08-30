@@ -67,8 +67,8 @@ const Header = (props) => {
 
   return (
     <>
-      <AppBar position="fixed" sx={{ boxShadow: 1, px: 3, background: "white" }}>
-        <Container maxWidth="xl">
+      <AppBar position="fixed" sx={{ boxShadow: 1, px: "5%", background: "white", width: "100vw" }}>
+        <Container maxWidth="100%" sx={{ mx: 0 }}>
           <Toolbar disableGutters>
             <Typography
               variant="h6"
@@ -77,7 +77,6 @@ const Header = (props) => {
               href="/"
               sx={{
                 fontSize: 24,
-                mr: 2,
                 display: { xs: "none", md: "flex" },
                 fontFamily: "monospace",
                 fontWeight: 800,

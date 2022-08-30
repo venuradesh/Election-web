@@ -286,8 +286,9 @@ const useStyles = makeStyles({
   mapContainer: {
     paddingLeft: 10,
     paddingRight: 10,
-    width: 720,
+    width: "100%",
     height: 320,
+    marginBottom: 20,
   },
 
   itemsContainer: {

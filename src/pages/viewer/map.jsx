@@ -154,8 +154,8 @@ class Map extends Component {
             zoom={10}
             options={{ styles: mapStyles }}
             mapContainerStyle={{
-              width: "700px",
-              height: "300px",
+              width: "100%",
+              height: "320px",
             }}
           >
             {/*  Marker component */}
