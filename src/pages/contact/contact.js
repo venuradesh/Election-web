@@ -1,5 +1,8 @@
 import Header from "../../compononts/header";
 import Image from "../../assets/buildings.png";
+import Facebook from "../../assets/facebook.png";
+import Instagram from "../../assets/instagram.png";
+import Twitter from "../../assets/twitter.png";
 
 //material ui
 import Box from "@mui/material/Box";
@@ -16,15 +19,28 @@ function Contact() {
 
         <Box className={classes.container} sx={{ boxShadow: 3 }}>
           <Box class="cellContainer-one">
-            <div className="head-text">Let's talk about</div>
-            <div className="head-text">everything!</div>
+            <Box className="head-text" sx={{ fontSize: 24 }}>
+              Let's talk about
+            </Box>
+            <Box className="head-text" sx={{ fontSize: 20 }}>
+              everything!
+            </Box>
             <div className="detail-text">
               Lorem ipsum dolor sit amet, consectetur adipisicing elit.
               <br />
               Voluptas debitis, fugit natus?
             </div>
-            <Box className="image" sx={{ width: 350 }}>
-              <img className={classes.image} src={require("../../assets/contact.png")} alt="Contact" width={400} />
+
+            <Box className={classes.socialMediaContainer}>
+              <Box className={classes.socialMedia}>
+                <img src={Facebook} alt="facebook" className={classes.socialIcon} />
+              </Box>
+              <Box className={classes.socialMedia}>
+                <img src={Instagram} alt="instagram" className={classes.socialIcon} />
+              </Box>
+              <Box className={classes.socialMedia}>
+                <img src={Twitter} alt="twitter" className={classes.socialIcon} />
+              </Box>
             </Box>
           </Box>
           <Box className={classes.itemsSplitter}></Box>
@@ -77,5 +93,23 @@ const useStyles = makeStyles({
 
   image: {
     width: "100%",
+  },
+
+  socialMediaContainer: {
+    marginTop: 30,
+    width: 150,
+    height: "max-content",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-between",
+  },
+
+  socialMedia: {
+    cursor: "pointer",
+  },
+
+  socialIcon: {
+    width: 30,
+    height: 30,
   },
 });

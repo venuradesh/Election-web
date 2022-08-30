@@ -5,9 +5,7 @@ import Box from "@mui/material/Box";
 import { makeStyles } from "@mui/styles";
 
 import colors from "../../Colors/Colors";
-import Facebook from "../../assets/facebook.png";
-import Instagram from "../../assets/instagram.png";
-import Twitter from "../../assets/twitter.png";
+
 //components
 import Header from "../../compononts/header";
 
@@ -27,17 +25,7 @@ function About() {
           <Box className={classes.content}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia, molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum numquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentium optio, eaque rerum! Provident similique accusantium nemo autem.</Box>
           <Box className={classes.content}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis ratione velit natus dicta earum, deserunt vitae, eaque incidunt, ad omnis tempora sit! Dolore quidem optio obcaecati! Ipsam cupiditate et dolore eligendi assumenda quos necessitatibus, earum illum amet distinctio nam deleniti?</Box>
         </Box>
-        <Box className={classes.socialMediaContainer}>
-          <Box className={classes.socialMedia}>
-            <img src={Facebook} alt="facebook" className={classes.socialIcon} />
-          </Box>
-          <Box className={classes.socialMedia}>
-            <img src={Instagram} alt="instagram" className={classes.socialIcon} />
-          </Box>
-          <Box className={classes.socialMedia}>
-            <img src={Twitter} alt="twitter" className={classes.socialIcon} />
-          </Box>
-        </Box>
+        <Box className={classes.bottomLine}></Box>
       </Box>
     </Box>
   );
@@ -50,6 +38,8 @@ const useStyles = makeStyles({
     width: "100vw",
     height: "100vh",
     position: "relative",
+    display: "flex",
+    flexDirection: "row-reverse",
     paddingTop: 70,
   },
 
@@ -59,20 +49,20 @@ const useStyles = makeStyles({
     backgroundColor: colors.themeColor,
     position: "absolute",
     top: 70,
-    right: -200,
-    borderTopLeftRadius: 1000,
-    borderBottomLeftRadius: 1000,
+    left: -200,
+    borderTopRightRadius: 1000,
+    borderBottomRightRadius: 1000,
     zIndex: -1,
   },
 
   aboutusImage: {
     position: "absolute",
-    right: 100,
+    left: 100,
     bottom: 0,
   },
 
   image: {
-    width: 800,
+    width: 900,
   },
 
   contentWrapper: {
@@ -83,6 +73,12 @@ const useStyles = makeStyles({
     alignItems: "center",
     justifyContent: "center",
     rowGap: 40,
+  },
+
+  bottomLine: {
+    width: 200,
+    height: 2,
+    backgroundColor: colors.themeColor,
   },
 
   contentContainer: {

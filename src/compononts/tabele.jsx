@@ -7,6 +7,7 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
+import Button from "@mui/material/Button";
 import { useNavigate } from "react-router-dom";
 
 const columns = [
@@ -17,7 +18,7 @@ const columns = [
 
 export default function DataTable({ rows, state, lga, ward }) {
   const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(10);
+  const [rowsPerPage, setRowsPerPage] = React.useState(100);
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -33,9 +34,9 @@ export default function DataTable({ rows, state, lga, ward }) {
   };
 
   return (
-    <Paper sx={{ width: "100%", overflow: "hidden", backgroundColor: "transparent" }}>
+    <Paper sx={{ width: "100%", overflow: "hidden", bgcolor: "transparent" }}>
       <TablePagination rowsPerPageOptions={[10, 25, 100]} component="div" count={rows.length} rowsPerPage={rowsPerPage} page={page} onPageChange={handleChangePage} onRowsPerPageChange={handleChangeRowsPerPage} />
-      <TableContainer sx={{ maxHeight: 440 }}>
+      <TableContainer sx={{ maxHeight: 540 }}>
         <Table stickyHeader aria-label="sticky table">
           <TableHead>
             <TableRow>
@@ -44,12 +45,15 @@ export default function DataTable({ rows, state, lga, ward }) {
                   {column.label}
                 </TableCell>
               ))}
+              <TableCell>Images</TableCell>
+              <TableCell>Videos</TableCell>
+              <TableCell>Click To View</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
               return (
-                <TableRow onClick={() => rowHanddle(row.pu_name)} hover role="checkbox" tabIndex={-1} key={row.pu_code}>
+                <TableRow hover role="checkbox" tabIndex={-1} key={row.pu_code}>
                   {columns.map((column) => {
                     const value = row[column.id];
                     return (
@@ -58,6 +62,13 @@ export default function DataTable({ rows, state, lga, ward }) {
                       </TableCell>
                     );
                   })}
+                  <TableCell>20/2000</TableCell>
+                  <TableCell>20/2000</TableCell>
+                  <TableCell>
+                    <Button variant="contained" onClick={() => rowHanddle(row.pu_name)}>
+                      Click me
+                    </Button>
+                  </TableCell>
                 </TableRow>
               );
             })}
